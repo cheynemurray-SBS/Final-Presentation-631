@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project Presentation: BUAD-631-38</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --surface:#f4f5f7; --surface-2:#eceef1; --ink:#1d1f24; --muted:#5b6470;
+  --line:#d9dce1; --maroon:#8c1d2c; --maroon-soft:#f6e9eb; --on-maroon:#ffffff;
+  --seg1:#8c1d2c; --seg2:#a8394a; --seg3:#5b6470; --seg4:#7b8591; --seg5:#b98a3e; --seg6:#9a6f2c;
+  --ok:#2f6b4f;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16171b; --surface:#1f2126; --surface-2:#272a30; --ink:#eceef1; --muted:#a3aab4;
+    --line:#353840; --maroon:#e0788a; --maroon-soft:#3a1e24; --on-maroon:#16171b;
+    --seg1:#c94a5e; --seg2:#e0788a; --seg3:#7f8996; --seg4:#a3aab4; --seg5:#d1a85c; --seg6:#b88d45;
+    --ok:#6fbf95; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16171b; --surface:#1f2126; --surface-2:#272a30; --ink:#eceef1; --muted:#a3aab4;
+  --line:#353840; --maroon:#e0788a; --maroon-soft:#3a1e24; --on-maroon:#16171b;
+  --seg1:#c94a5e; --seg2:#e0788a; --seg3:#7f8996; --seg4:#a3aab4; --seg5:#d1a85c; --seg6:#b88d45;
+  --ok:#6fbf95; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.15;margin:0}
+a{color:var(--maroon)}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:2px;border-radius:4px}
+.wrap{max-width:960px;margin:0 auto;padding:0 1.25rem}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:1rem;height:56px;overflow-x:auto;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav .course{font-weight:700;color:var(--maroon);white-space:nowrap;font-size:.9rem}
+.nav a.l{color:var(--muted);text-decoration:none;font-size:.9rem;white-space:nowrap;padding:.25rem 0}
+.nav a.l:hover{color:var(--ink)}
+.nav .prog{margin-left:auto;white-space:nowrap;font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.nav .prog .bar{width:72px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.nav .prog .bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+
+/* hero */
+header.hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--line)}
+.kicker{color:var(--maroon);font-weight:600;font-size:.95rem;margin:0 0 .75rem}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);max-width:16ch;letter-spacing:-.01em}
+.hero p.lede{font-size:1.15rem;color:var(--muted);max-width:60ch;margin:1.25rem 0 2rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.facts div{background:var(--bg);padding:1rem 1.1rem}
+.facts dt{font-size:.82rem;color:var(--muted);margin-bottom:.2rem}
+.facts dd{margin:0;font-weight:600}
+
+section{padding:3rem 0;border-bottom:1px solid var(--line)}
+section h2{font-size:clamp(1.6rem,3.2vw,2.1rem);margin-bottom:.6rem}
+section > .wrap > p.intro{color:var(--muted);max-width:62ch;margin:0 0 1.75rem}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.rule{border-left:3px solid var(--maroon);padding:.2rem 0 .2rem 1rem}
+.rule h3{font-family:"Public Sans",system-ui,sans-serif;font-size:1rem;font-weight:700;margin-bottom:.35rem}
+.rule ul{margin:0;padding-left:1.1rem;color:var(--ink)}
+.rule li{margin:.2rem 0}
+.honesty{margin-top:2rem;background:var(--maroon-soft);border-radius:10px;padding:1.25rem 1.4rem}
+.honesty strong{color:var(--maroon)}
+code,.file{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.9em;background:var(--surface);padding:.1em .4em;border-radius:4px;word-break:break-all}
+
+/* issues tabs */
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tab{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--maroon);border-color:var(--maroon);color:var(--on-maroon)}
+.panel{background:var(--surface);border-radius:12px;padding:1.6rem 1.6rem 1.4rem}
+.panel[hidden]{display:none}
+.panel h3{font-size:1.5rem;margin-bottom:.75rem}
+.panel .ctx{max-width:65ch}
+.panel .task{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);max-width:65ch}
+.args{display:grid;gap:.75rem;margin:1rem 0 0}
+.arg{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem}
+.arg b{color:var(--maroon)}
+
+/* points bar */
+.pts{margin:0 0 2rem}
+.pts .bar{display:flex;height:56px;border-radius:10px;overflow:hidden;gap:2px}
+.pts button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem;transition:filter .2s,transform .2s}
+.pts button:hover,.pts button:focus-visible{filter:brightness(1.12)}
+.pts button:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+.pts .legend{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-top:.5rem}
+
+/* components */
+.comp{border:1px solid var(--line);border-radius:12px;margin-bottom:.9rem;background:var(--bg);overflow:hidden}
+.comp summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1.1rem 1.25rem}
+.comp summary::-webkit-details-marker{display:none}
+.comp .n{width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center;font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:1.2rem;color:#fff}
+.comp .t{font-weight:700;font-size:1.05rem}
+.comp .t small{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+.comp .p{font-weight:700;white-space:nowrap}
+.comp .p::after{content:"";display:inline-block;width:.5rem;height:.5rem;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);margin-left:.9rem;transition:transform .2s}
+.comp[open] .p::after{transform:rotate(-135deg) translateY(-1px)}
+.comp .body{padding:0 1.25rem 1.4rem 4.45rem;max-width:calc(65ch + 4.45rem)}
+.comp .body ul{padding-left:1.1rem;margin:.4rem 0}
+.comp .body li{margin:.25rem 0}
+.comp .ex{background:var(--surface);border-radius:8px;padding:.85rem 1rem;margin:.9rem 0 0;font-size:.95rem}
+.comp .ex b{display:block;font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+.comp.flash{box-shadow:0 0 0 3px var(--maroon)}
+@media (max-width:600px){.comp .body{padding-left:1.25rem}}
+
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.9rem 0;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:.65rem .8rem;border-bottom:1px solid var(--line)}
+th{background:var(--surface);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.vt{min-width:760px}
+
+/* rubric */
+.bands{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:1.5rem}
+.band{border-radius:10px;padding:1rem 1.1rem;background:var(--surface)}
+.band .r{font-family:"Newsreader",Georgia,serif;font-size:1.5rem;font-weight:600}
+.band .g{font-size:.85rem;color:var(--muted);margin-bottom:.35rem}
+.band p{margin:0;font-size:.92rem}
+.band.top{background:var(--maroon-soft)}
+.band.top .r{color:var(--maroon)}
+
+/* mistakes */
+.mist{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.mist div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:1.5rem;padding:1rem 1.25rem;border-bottom:1px solid var(--line)}
+.mist div:last-child{border-bottom:0}
+.mist div:nth-child(odd){background:var(--surface)}
+.mist b{font-weight:600}
+.mist span{color:var(--muted)}
+@media (max-width:600px){.mist div{grid-template-columns:1fr;gap:.25rem}}
+
+/* checklist */
+.check{display:grid;gap:.5rem;max-width:720px}
+.check label{display:flex;gap:.85rem;align-items:flex-start;padding:.75rem 1rem;border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:background .2s,border-color .2s}
+.check input{appearance:none;flex:none;width:1.3rem;height:1.3rem;margin:.1rem 0 0;border:2px solid var(--muted);border-radius:5px;display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--ok);border-color:var(--ok)}
+.check input:checked::after{content:"";width:.35rem;height:.65rem;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check label:has(input:checked){background:var(--surface);border-color:transparent}
+.check label:has(input:checked) span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.check .sub{margin-left:2.15rem}
+.checkhead{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.checkhead .count{font-weight:700}
+.btn{font:inherit;font-weight:600;font-size:.9rem;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:.4rem .9rem;cursor:pointer}
+.btn:hover{color:var(--ink);border-color:var(--muted)}
+.done-msg{color:var(--ok);font-weight:600}
+
+/* tips & resources */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.two h3{font-size:1.3rem;margin-bottom:.6rem}
+.two ul{padding-left:1.1rem;margin:0}
+.two li{margin:.35rem 0}
+.do{display:grid;gap:.6rem;margin-top:.5rem}
+.do div{font-size:.95rem;padding:.7rem .9rem;border-radius:8px;background:var(--surface)}
+.do s{color:var(--muted)}
+
+pre.data{position:relative;margin:.9rem 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;overflow-x:auto;font:400 .85rem/1.55 ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.copy{position:absolute;top:.5rem;right:.5rem;font:600 .8rem "Public Sans",system-ui,sans-serif;background:var(--bg);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.25rem .7rem;cursor:pointer}
+.copy:hover{color:var(--ink)}
+.scen{border-left:3px solid var(--maroon);padding:.1rem 0 .1rem 1rem;margin:0 0 1rem}
+.q{margin:1.4rem 0 .4rem;font-family:"Public Sans",system-ui,sans-serif;font-size:1rem;font-weight:700}
+.q span{color:var(--muted);font-weight:500}
+.body ol.sub{padding-left:1.3rem;margin:.4rem 0}
+.body ol.sub>li{margin:.55rem 0}
+.body ol.sub ul{margin:.25rem 0}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-top:1.5rem}
+.weights div{background:var(--surface);border-radius:10px;padding:.9rem 1rem}
+.weights .r{font-family:"Newsreader",Georgia,serif;font-size:1.5rem;font-weight:600}
+.weights p{margin:0;font-size:.92rem;color:var(--muted)}
+.ok-list li::marker{color:var(--ok)}
+.no-list li::marker{color:var(--maroon)}
+footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.9rem}
+@media print{.nav,.btn{display:none}.comp .body{display:block}details>*{display:block}}
+.sym{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:.7rem;margin-top:1rem}
+.sym button{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;text-align:left;padding:.75rem .9rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit}
+.sym button:hover{border-color:var(--maroon)}
+.sym button:focus-visible{outline:2px solid var(--maroon);outline-offset:2px}
+.sym .g{font:600 1.6rem/1.1 "Newsreader",Georgia,serif;color:var(--maroon)}
+.sym .nm{font:700 .9rem "Public Sans",system-ui,sans-serif}
+.sym .mn{font-size:.88rem;color:var(--muted);line-height:1.4}
+.sym .eg{font:500 .82rem ui-monospace,"SF Mono",Menlo,Consolas,monospace;margin-top:.25rem}
+.sym button.ok{background:var(--maroon);border-color:var(--maroon)}
+.sym button.ok span{color:#fff}
+.symnote{color:var(--muted);font-size:.92rem;margin-top:.6rem;min-height:1.4em}
+.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem;margin:.6rem 0 1rem}
+.tasks div{background:var(--surface);border-radius:8px;padding:.7rem .85rem;font-size:.95rem}
+.tasks b{display:block;color:var(--maroon);font-family:"Public Sans",system-ui,sans-serif;font-size:.85rem;letter-spacing:.02em}
+.secnote{font-size:.95rem;color:var(--muted);margin:.2rem 0 .6rem}
+.purpose{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:1.5rem}
+.purpose div{background:var(--surface);border-radius:10px;padding:.9rem 1rem;font-size:.95rem}
+.purpose b{display:block;font-family:"Newsreader",Georgia,serif;font-size:1.35rem;color:var(--maroon);line-height:1.1;margin-bottom:.2rem}
+.hyp{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.9rem;line-height:1.7}
+.gtable td:first-child{white-space:nowrap;font-weight:600}
+.warnnote{margin-top:1rem;font-size:.92rem;color:var(--muted)}
+.code-h{font-weight:700;margin:1.2rem 0 .2rem;font-size:.95rem}
+.bg{display:grid;gap:.6rem;margin-top:.5rem}
+.bg div{border-radius:8px;padding:.75rem .9rem;font-size:.95rem;background:var(--surface)}
+.bg .bad{border-left:3px solid var(--maroon)}
+.bg .good{border-left:3px solid var(--ok)}
+.bg em{font-style:normal;font-weight:700;margin-right:.35rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}
+.chips a,.chips span{font-size:.9rem;border:1px solid var(--line);border-radius:999px;padding:.3rem .8rem;text-decoration:none;color:var(--ink);background:var(--bg)}
+.chips a:hover{border-color:var(--maroon);color:var(--maroon)}
+.faq details{border-bottom:1px solid var(--line);padding:.8rem 0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq p{margin:.5rem 0 0;color:var(--muted);max-width:68ch}
+pre.data code{background:none;padding:0;word-break:normal;white-space:pre}
+.timer{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:var(--surface);border-radius:12px;padding:1.3rem 1.5rem;margin-top:1.5rem}
+.timer .clock{font:600 2.6rem/1 "Newsreader",Georgia,serif;font-variant-numeric:tabular-nums;color:var(--maroon);min-width:6ch}
+.timer .now{font-weight:700}
+.timer .next{color:var(--muted);font-size:.92rem}
+.timer .ctrl{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+.timer .btn.primary{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.tbar{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden;margin-top:.7rem}
+.tbar i{display:block;height:100%;width:0;background:var(--maroon);transition:width .5s}
+.timer .over{color:var(--maroon);font-weight:700}
+.vis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}
+.vis div{background:var(--surface);border-radius:10px;padding:1rem 1.1rem}
+.vis .k{font:600 1.6rem/1 "Newsreader",Georgia,serif;color:var(--maroon)}
+.vis b{display:block;margin:.35rem 0 .2rem}
+.vis span{font-size:.9rem;color:var(--muted)}
+@media (max-width:600px){.timer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Presentation sections">
+  <div class="wrap">
+    <span class="course">BUAD-631-38</span>
+    <a class="l" href="#rules">Guidelines</a>
+    <a class="l" href="#structure">Structure</a>
+    <a class="l" href="#visuals">Visuals</a>
+    <a class="l" href="#rehearse">Rehearse</a>
+    <a class="l" href="#checklist">Checklist</a>
+    <span class="prog" aria-live="polite"><span class="bar"><i id="navbar"></i></span><span id="navcount">0 of 0</span></span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Course Project, Final Presentation</p>
+    <h1>Tell decision-makers what your data says and what to do</h1>
+    <p class="lede">Present your project as you would to leadership: the problem, the evidence, and a clear recommendation. Results are the core, so give them the most time.</p>
+    <dl class="facts">
+      <div><dt>Presenting</dt><dd>Tue, Dec 15, 2026, live session</dd></div>
+      <div><dt>Duration</dt><dd>15 to 20 minutes</dd></div>
+      <div><dt>Format</dt><dd>Professional business presentation</dd></div>
+      <div><dt>Delivery</dt><dd>Every group member presents</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+<section id="rules">
+  <div class="wrap">
+    <h2>Presentation guidelines</h2>
+    <p class="intro">Treat this like a briefing to an executive team, not a class report.</p>
+    <div class="rules">
+      <div class="rule"><h3>Duration</h3><ul><li>15 to 20 minutes</li><li>Results and recommendations take the most time</li><li>Rehearse with the timer on this page</li></ul></div>
+      <div class="rule"><h3>Format</h3><ul><li>A professional business presentation</li><li>Simple language, minimal jargon</li><li>Every chart titled and labeled, with units</li></ul></div>
+      <div class="rule"><h3>Delivery</h3><ul><li>All group members participate equally</li><li>Plan who presents each section before you rehearse</li><li>Practice handoffs between speakers</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="structure">
+  <div class="wrap">
+    <h2>Presentation structure</h2>
+    <p class="intro">Eight sections, in this order. The bar is sized by suggested time; select a segment to jump to that section.</p>
+    <div class="pts">
+      <div class="bar"><button style="flex:1.0;background:var(--seg1)" data-go="s1" aria-label="Opening slide, 1 min" title="Opening slide: 1 min">1</button><button style="flex:2.5;background:var(--seg2)" data-go="s2" aria-label="Business problem and context, 2–3 min" title="Business problem and context: 2–3 min">2</button><button style="flex:1.5;background:var(--seg1)" data-go="s3" aria-label="Research question and hypotheses, 1–2 min" title="Research question and hypotheses: 1–2 min">3</button><button style="flex:2.5;background:var(--seg3)" data-go="s4" aria-label="Data description, 2–3 min" title="Data description: 2–3 min">4</button><button style="flex:2.5;background:var(--seg4)" data-go="s5" aria-label="Statistical methodology, 2–3 min" title="Statistical methodology: 2–3 min">5</button><button style="flex:4.5;background:var(--seg5)" data-go="s6" aria-label="Results and findings, 4–5 min" title="Results and findings: 4–5 min">6</button><button style="flex:3.5;background:var(--seg6)" data-go="s7" aria-label="Business implications and recommendations, 3–4 min" title="Business implications and recommendations: 3–4 min">7</button><button style="flex:1.0;background:var(--seg3)" data-go="s8" aria-label="Conclusion, 1 min" title="Conclusion: 1 min">8</button></div>
+      <div class="legend"><span>Problem, question, data, methods</span><span>Results, recommendations, close</span></div>
+    </div>
+    <details class="comp" id="s1" open>
+      <summary><span class="n" style="background:var(--seg1)">1</span><span class="t">Opening slide<small>Title, names, date, and a hook</small></span><span class="p">1 min</span></summary>
+      <div class="body"><ul><li>Project title</li><li>Group member names</li><li>Date</li><li>A brief hook: why should the audience care about your problem?</li></ul></div>
+    </details><details class="comp" id="s2">
+      <summary><span class="n" style="background:var(--seg2)">2</span><span class="t">Business problem and context<small>Why is this analysis important?</small></span><span class="p">2–3 min</span></summary>
+      <div class="body"><ul><li>Brief organizational or industry background</li><li>A clear statement of the business problem</li><li>Why the problem matters: stakeholders and impact</li><li>Who will benefit from your analysis</li></ul><div class="ex"><b>Key question to answer</b>Why is this analysis important?</div></div>
+    </details><details class="comp" id="s3">
+      <summary><span class="n" style="background:var(--seg1)">3</span><span class="t">Research question and hypotheses<small>What you’re testing, in plain words</small></span><span class="p">1–2 min</span></summary>
+      <div class="body"><ul><li>Your specific research question</li><li>Null hypothesis (H₀)</li><li>Alternative hypothesis (Hₐ)</li><li>The target value or benchmark being tested</li></ul><div class="ex"><b>Presentation tip</b>Use simple language and avoid excessive jargon.</div></div>
+    </details><details class="comp" id="s4">
+      <summary><span class="n" style="background:var(--seg3)">4</span><span class="t">Data description<small>Where the data came from and what it looks like</small></span><span class="p">2–3 min</span></summary>
+      <div class="body"><ul><li>Data source and collection method</li><li>Sample size (n)</li><li>Time period</li><li>Key descriptive statistics: mean, standard deviation, median</li><li><strong>Visual:</strong> a histogram or box plot of the distribution</li></ul><p class="q">Key talking points</p><ul><li>Why is this data appropriate for the problem?</li><li>Any data limitations or quality considerations</li></ul></div>
+    </details><details class="comp" id="s5">
+      <summary><span class="n" style="background:var(--seg4)">5</span><span class="t">Statistical methodology<small>Why these methods fit, without the weeds</small></span><span class="p">2–3 min</span></summary>
+      <div class="body"><ul><li>Why you chose a confidence interval plus a hypothesis test</li><li>Key assumptions and how you verified them: normality, independence, and sample size adequacy</li><li>Your significance level (α = 0.05) and why</li></ul><div class="ex"><b>Presentation tip</b>Don’t get bogged down in technical details. Focus on why these methods are appropriate.</div></div>
+    </details><details class="comp" id="s6">
+      <summary><span class="n" style="background:var(--seg5)">6</span><span class="t">Results and findings<small>The core of your presentation</small></span><span class="p">4–5 min</span></summary>
+      <div class="body"><p class="q" style="margin-top:0">6a. Confidence interval <span>2 min</span></p><ul><li>Present your 95% confidence interval clearly</li><li><strong>Visual:</strong> an error bar plot or CI visualization</li><li>Interpretation: “We are 95% confident that the true population [variable] is between X and Y.”</li></ul><p class="q">6b. Hypothesis test results <span>2–3 min</span></p><ul><li>Test statistic value</li><li>P-value</li><li>Decision: reject or fail to reject H₀</li><li><strong>Visual:</strong> a distribution plot showing the test statistic, or a comparison chart</li><li>Your statistical conclusion in plain language</li></ul><div class="ex"><b>Example</b>“Our analysis provides strong evidence that average customer satisfaction (7.4) differs significantly from the target of 7.5 (p = 0.03).”</div><p class="q">6c. Practical significance</p><ul><li>What does this mean in business terms?</li><li>Is the statistical difference practically meaningful?</li><li>Quantify the impact if possible</li></ul></div>
+    </details><details class="comp" id="s7">
+      <summary><span class="n" style="background:var(--seg6)">7</span><span class="t">Business implications and recommendations<small>So what should we do about this?</small></span><span class="p">3–4 min</span></summary>
+      <div class="body"><ul><li>What the findings mean for the organization</li><li>Specific, actionable recommendations</li><li>Different scenarios, if appropriate</li><li>Honest acknowledgment of limitations</li><li>Next steps or future analysis</li></ul><div class="ex"><b>Key question to answer</b>So what should we do about this?</div></div>
+    </details><details class="comp" id="s8">
+      <summary><span class="n" style="background:var(--seg3)">8</span><span class="t">Conclusion<small>Recap and close strong</small></span><span class="p">1 min</span></summary>
+      <div class="body"><p style="margin-top:0">Briefly recap the problem, your key finding, and your main recommendation. End with a strong closing statement that ties back to business impact.</p></div>
+    </details>
+  </div>
+</section>
+
+<section id="visuals">
+  <div class="wrap">
+    <h2>Required visuals</h2>
+    <p class="intro">At minimum, your slides need these four.</p>
+    <div class="vis">
+      <div><span class="k">1</span><b>Data distribution</b><span>A histogram or box plot, in the data description</span></div>
+      <div><span class="k">2</span><b>Confidence interval</b><span>An error bar or CI plot, in the results</span></div>
+      <div><span class="k">3</span><b>Hypothesis test result</b><span>A comparison chart or distribution plot, in the results</span></div>
+      <div><span class="k">4</span><b>Summary results table</b><span>Descriptive statistics: n, mean, standard deviation, median</span></div>
+    </div>
+    <div class="mist" style="margin-top:1.5rem">
+      <div><b>One idea per slide</b><span>Title each slide with its takeaway, such as “Satisfaction is below target,” not just “Results.”</span></div>
+      <div><b>Translate the numbers</b><span>Say what a p-value or interval means for the business, not just its value.</span></div>
+      <div><b>Make charts readable</b><span>Large fonts, labeled axes with units, and the target or benchmark marked on the chart.</span></div>
+      <div><b>Know your limitations</b><span>Name them before someone else asks. It builds credibility.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="rehearse">
+  <div class="wrap">
+    <h2>Rehearsal timer</h2>
+    <p class="intro">Start the timer when you start rehearsing. It shows which section you should be in, based on the middle of each suggested time range, and flags when you pass 20 minutes.</p>
+    <div class="timer">
+      <div class="clock" id="clock" aria-live="off">0:00</div>
+      <div>
+        <div class="now" id="tnow" aria-live="polite">Ready when you are</div>
+        <div class="next" id="tnext">Planned total: 19 minutes</div>
+        <div class="tbar"><i id="tfill"></i></div>
+        <div class="ctrl">
+          <button class="btn primary" id="tstart" type="button">Start</button>
+          <button class="btn" id="treset" type="button">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="wrap">
+    <h2>Presentation checklist</h2>
+    <p class="intro">Check items off as you prepare. Your progress is saved in this browser.</p>
+    <div class="checkhead">
+      <span class="count" id="count">0 of 0 complete</span>
+      <button class="btn" id="reset" type="button">Clear checklist</button>
+      <span class="done-msg" id="done" hidden>Ready to present.</span>
+    </div>
+    <div class="check" id="checks">
+      <label><input type="checkbox" data-k="open"><span>Opening slide with title, names, date, and a hook</span></label>
+      <label><input type="checkbox" data-k="prob"><span>Business problem, stakeholders, and who benefits</span></label>
+      <label><input type="checkbox" data-k="hyp"><span>Research question, H₀, Hₐ, and target value in plain language</span></label>
+      <label><input type="checkbox" data-k="data"><span>Data source, n, time period, descriptive statistics, and limitations</span></label>
+      <label><input type="checkbox" data-k="meth"><span>Why these methods, assumptions verified, and α justified</span></label>
+      <label><input type="checkbox" data-k="res"><span>Confidence interval, test results, and practical significance</span></label>
+      <label><input type="checkbox" data-k="rec"><span>Specific recommendations, limitations, and next steps</span></label>
+      <label><input type="checkbox" data-k="close"><span>Conclusion with a strong closing statement</span></label>
+      <label class="sub"><input type="checkbox" data-k="v1"><span>Visual: data distribution</span></label>
+      <label class="sub"><input type="checkbox" data-k="v2"><span>Visual: confidence interval</span></label>
+      <label class="sub"><input type="checkbox" data-k="v3"><span>Visual: hypothesis test result</span></label>
+      <label class="sub"><input type="checkbox" data-k="v4"><span>Visual: summary results table</span></label>
+      <label><input type="checkbox" data-k="who"><span>Every member has a speaking section</span></label>
+      <label><input type="checkbox" data-k="time"><span>Rehearsed within 15 to 20 minutes</span></label>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">University of Redlands School of Business. BUAD-631-38: Data Driven Decision-Making, Professor Murray. Questions: <a href="mailto:cheyne_murray@redlands.edu">cheyne_murray@redlands.edu</a></div>
+</footer>
+
+<script>
+(function(){
+  // Tabs
+  const tabs=[...document.querySelectorAll('.tab')];
+  function select(t,focus){
+    tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(focus)t.focus();
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>select(t));
+    t.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();
+        select(tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length],true);}
+    });
+  });
+
+  // Points bar jumps to and opens a component
+  document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
+    const d=document.getElementById(b.dataset.go);
+    d.open=true; d.scrollIntoView({block:'start'});
+    d.classList.add('flash'); setTimeout(()=>d.classList.remove('flash'),1200);
+  }));
+
+  // Checklist with per-browser memory
+  const KEY='buad631-38-presentation-checklist';
+  const boxes=[...document.querySelectorAll('#checks input')];
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){saved={};}
+  boxes.forEach(b=>{b.checked=!!saved[b.dataset.k];});
+  function update(){
+    const n=boxes.filter(b=>b.checked).length, t=boxes.length;
+    document.getElementById('count').textContent=n+' of '+t+' complete';
+    document.getElementById('navcount').textContent=n+' of '+t;
+    document.getElementById('navbar').style.width=(n/t*100)+'%';
+    document.getElementById('done').hidden=n!==t;
+    const s={}; boxes.forEach(b=>{if(b.checked)s[b.dataset.k]=1;});
+    try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}
+  }
+  boxes.forEach(b=>b.addEventListener('change',update));
+  document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);update();});
+  update();
+
+  // Symbol buttons
+  const note=document.getElementById('symnote');
+  document.querySelectorAll('.sym button').forEach(b=>b.addEventListener('click',async()=>{
+    const v=b.dataset.sym||b.textContent;
+    try{await navigator.clipboard.writeText(v);b.classList.add('ok');if(note)note.textContent='Copied '+v+'. Paste it into your Word document.';}
+    catch(e){if(note)note.textContent='Copying isn’t allowed here. Select the symbol and copy it manually.';}
+    setTimeout(()=>b.classList.remove('ok'),900);
+  }));
+
+
+  // Rehearsal timer
+  (function(){
+    const plan=[["Opening slide", 1.0], ["Business problem and context", 2.5], ["Research question and hypotheses", 1.5], ["Data description", 2.5], ["Statistical methodology", 2.5], ["Results and findings", 4.5], ["Business implications and recommendations", 3.5], ["Conclusion", 1.0]];
+    const total=plan.reduce((a,p)=>a+p[1],0)*60, LIMIT=20*60;
+    const clock=document.getElementById('clock'),now=document.getElementById('tnow'),next=document.getElementById('tnext'),fill=document.getElementById('tfill'),start=document.getElementById('tstart'),reset=document.getElementById('treset');
+    let t0=null,acc=0,iv=null,lastSec=-1;
+    const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+    function tick(){
+      const s=acc+(t0?(Date.now()-t0)/1000:0);
+      clock.textContent=fmt(s);
+      fill.style.width=Math.min(100,s/LIMIT*100)+'%';
+      let c=0,i=0;for(;i<plan.length;i++){c+=plan[i][1]*60;if(s<c)break;}
+      if(i!==lastSec){
+        lastSec=i;
+        if(i<plan.length){now.textContent=(i+1)+'. '+plan[i][0];next.textContent=i+1<plan.length?'Next: '+plan[i+1][0]:'Last section';now.classList.remove('over');}
+        else{now.textContent='Planned time used';next.textContent='Wrap up now';}
+      }
+      if(s>=LIMIT){now.textContent='Over 20 minutes';now.classList.add('over');}
+    }
+    start.addEventListener('click',()=>{
+      if(t0){acc+=(Date.now()-t0)/1000;t0=null;clearInterval(iv);start.textContent='Resume';}
+      else{t0=Date.now();iv=setInterval(tick,250);start.textContent='Pause';tick();}
+    });
+    reset.addEventListener('click',()=>{clearInterval(iv);t0=null;acc=0;lastSec=-1;clock.textContent='0:00';fill.style.width='0';now.textContent='Ready when you are';now.classList.remove('over');next.textContent='Planned total: '+(total/60)+' minutes';start.textContent='Start';});
+  })();
+
+  // Copy buttons on datasets
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+    const txt=b.nextElementSibling.textContent;
+    try{await navigator.clipboard.writeText(txt);b.textContent='Copied';}
+    catch(e){const r=document.createRange();r.selectNodeContents(b.nextElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+    setTimeout(()=>b.textContent='Copy',1500);
+  }));
+})();
+</script>
+</body>
+</html>
